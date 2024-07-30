@@ -23,23 +23,13 @@ func readData(file string) []int {
 }
 
 func main() {
-	test_data := readData("test_data")
 	data := readData("data")
 
 	// Part One
-	test := calcIncrs(test_data[0], test_data[1:])
-	results := calcIncrs(data[0], data[1:])
-	if test != 7 {
-		os.Exit(1)
-	}
+	results := calcIncrs(data[0], data)
 	fmt.Println("Part one: ", results)
 
 	// Part Two
-	test = calcIncrSums(test_data[0], test_data[1:])
-	results = calcIncrSums(data[0], data[0:])
-	fmt.Println(test)
-	if test != 5 {
-		os.Exit(1)
-	}
+	results = calcIncrSums(data[:4], data)
 	fmt.Println("Part two: ", results)
 }

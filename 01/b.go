@@ -8,8 +8,8 @@ func calcSum(values []int) int {
 	return sum
 }
 
-func calcIncrSums(startVal int, vals []int) int {
-	prev := startVal
+func calcIncrSums(startVals []int, vals []int) int {
+	prev := calcSum(startVals)
 	count := 0
 	for i := range vals {
 		new := calcSum(vals[i : i+3])
