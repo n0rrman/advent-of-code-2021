@@ -8,40 +8,38 @@ import (
 	"strings"
 )
 
-func readData(file string) []string {
+func readData(file string) []int {
 	body, err := os.ReadFile(file)
 	if err != nil {
 		log.Fatalf("unable to read file: %v", err)
 	}
-	data := strings.Split(string(body[:]), "\n")
-	return data
-}
-
-func calcIncr(startVal string, vals []string) int {
-	prev := startVal
-	count := 0
-	for _, d := range vals {
-
-		a, _ := strconv.Atoi(d)
-		b, _ := strconv.Atoi(prev)
-		if a > b {
-			count += 1
-		}
-		prev = d
+	sData := strings.Split(string(body[:]), "\n")
+	var iData []int
+	for _, d := range sData {
+		i, _ := strconv.Atoi(d)
+		iData = append(iData, i)
 	}
-
-	return count
+	return iData
 }
 
 func main() {
 	test_data := readData("test_data")
 	data := readData("data")
 
-	test := calcIncr(test_data[0], test_data[1:])
-	results := calcIncr(data[0], data[1:])
+	// Part One
+	test := calcIncrs(test_data[0], test_data[1:])
+	results := calcIncrs(data[0], data[1:])
 	if test != 7 {
 		os.Exit(1)
 	}
+	fmt.Println("Part one: ", results)
 
-	fmt.Println(results)
+	// Part Two
+	test = calcIncrSums(test_data[0], test_data[1:])
+	results = calcIncrSums(data[0], data[0:])
+	fmt.Println(test)
+	if test != 5 {
+		os.Exit(1)
+	}
+	fmt.Println("Part two: ", results)
 }
