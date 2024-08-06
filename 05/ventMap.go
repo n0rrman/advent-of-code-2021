@@ -72,6 +72,34 @@ func (vm ventMap) markVertical(c coordPair) ventMap {
 	return vm
 }
 
+func (vm ventMap) markDiagUp(c coordPair) ventMap {
+	if c.fromX > c.toX {
+		c.fromX, c.toX = c.toX, c.fromX
+		c.fromY, c.toY = c.toY, c.fromY
+	}
+	step := 0
+
+	for i := c.fromX; i <= c.toX; i++ {
+		vm[c.fromY+step][i] += 1
+		step--
+	}
+	return vm
+}
+
+func (vm ventMap) markDiagDown(c coordPair) ventMap {
+	if c.fromX > c.toX {
+		c.fromX, c.toX = c.toX, c.fromX
+		c.fromY, c.toY = c.toY, c.fromY
+	}
+
+	step := 0
+	for i := c.fromX; i <= c.toX; i++ {
+		vm[c.fromY+step][i] += 1
+		step++
+	}
+	return vm
+}
+
 func (vm ventMap) countOverlap(threshold int) int {
 	count := 0
 	for _, rows := range vm {

@@ -46,6 +46,6 @@ func main() {
 	fmt.Println("Part one: ", results)
 
 	// Part Two
-	results = calcVentOverlapA(data)
+	results = calcVentOverlapB(data)
 	fmt.Println("Part two: ", results)
 }

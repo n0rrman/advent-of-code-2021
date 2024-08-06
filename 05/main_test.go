@@ -16,7 +16,7 @@ func TestA(t *testing.T) {
 
 func TestB(t *testing.T) {
 	data := readData("test_data")
-	results := calcVentOverlapA(data)
+	results := calcVentOverlapB(data)
 
 	const e = 12
 	if results != e {
