@@ -20,7 +20,7 @@ This repository serves as a mono repository for the [Advent of Code 2021](https:
 | [09](https://adventofcode.com/2021/day/9) | ✅ | 462 | 1397760 | [advent-of-code-2021/9](https://github.com/n0rrman/advent-of-code-2021/tree/main/09) | -->
 | [10](https://adventofcode.com/2021/day/10) | ✅ | 389589 | 1190420163 | [advent-of-code-2021/10](https://github.com/n0rrman/advent-of-code-2021/tree/main/10) | -->
 | [11](https://adventofcode.com/2021/day/11) | ✅ | 1647 | 348 | [advent-of-code-2021/11](https://github.com/n0rrman/advent-of-code-2021/tree/main/11) | -->
-| [12](https://adventofcode.com/2021/day/12) | ❌ |  |  | [advent-of-code-2021/12](https://github.com/n0rrman/advent-of-code-2021/tree/main/12) | -->
+| [12](https://adventofcode.com/2021/day/12) | ✅ | 4754 | 143562 | [advent-of-code-2021/12](https://github.com/n0rrman/advent-of-code-2021/tree/main/12) | -->
 | [13](https://adventofcode.com/2021/day/13) | ❌ |  |  | [advent-of-code-2021/13](https://github.com/n0rrman/advent-of-code-2021/tree/main/13) | -->
 | [14](https://adventofcode.com/2021/day/14) | ❌ |  |  | [advent-of-code-2021/14](https://github.com/n0rrman/advent-of-code-2021/tree/main/14) | -->
 | [15](https://adventofcode.com/2021/day/15) | ❌ |  |  | [advent-of-code-2021/15](https://github.com/n0rrman/advent-of-code-2021/tree/main/15) | -->
