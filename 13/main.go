@@ -55,6 +55,5 @@ func main() {
 	fmt.Println("Part one: ", results)
 
 	// Part Two
-	results = 1
-	fmt.Println("Part two: ", results)
+	foldAndPrint(points, folds)
 }
