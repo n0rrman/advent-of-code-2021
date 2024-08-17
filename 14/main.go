@@ -29,10 +29,10 @@ func main() {
 	str, pairs := readData("data")
 
 	// Part One
-	results := calcPolyValue(str, pairs)
+	results := calcPolyValue(str, pairs, 10)
 	fmt.Println("Part one: ", results)
 
 	// Part Two
-	results = 2
+	results = calcPolyValue(str, pairs, 40)
 	fmt.Println("Part two: ", results)
 }
