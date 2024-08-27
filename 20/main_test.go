@@ -5,9 +5,13 @@ import (
 )
 
 func TestA(t *testing.T) {
-	results := 0
+	values, trenchMap := readData("data")
 
-	const e = 1
+	results := 0
+	_ = values
+	_ = trenchMap
+
+	const e = 35
 	if results != e {
 		t.Errorf("Expected %v, but got %v", e, results)
 	}
