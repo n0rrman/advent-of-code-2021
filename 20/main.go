@@ -33,14 +33,12 @@ func readData(file string) ([]bool, [][]bool) {
 
 func main() {
 	values, trenchMap := readData("data")
-	_ = values
 
-	fmt.Println(trenchMap)
 	// Part One
-	results := "part one"
+	results := enhanceAndCalc(values, trenchMap, 2)
 	fmt.Println("Part one: ", results)
 
 	// Part Two
-	results = "part two"
+	results = 0
 	fmt.Println("Part two: ", results)
 }
