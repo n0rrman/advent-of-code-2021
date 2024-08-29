@@ -34,11 +34,7 @@ func TestIsLit(t *testing.T) {
 
 func TestA(t *testing.T) {
 	values, trenchMap := readData("test_data")
-
 	results := enhanceAndCalc(values, trenchMap, 2)
-
-	_ = values
-	_ = trenchMap
 
 	const e = 35
 	if results != e {
@@ -47,9 +43,10 @@ func TestA(t *testing.T) {
 }
 
 func TestB(t *testing.T) {
-	results := 0
+	values, trenchMap := readData("test_data")
+	results := enhanceAndCalc(values, trenchMap, 50)
 
-	const e = 2
+	const e = 3351
 	if results != e {
 		t.Errorf("Expected %v, but got %v", e, results)
 	}

@@ -39,6 +39,6 @@ func main() {
 	fmt.Println("Part one: ", results)
 
 	// Part Two
-	results = 0
+	results = enhanceAndCalc(values, trenchMap, 50)
 	fmt.Println("Part two: ", results)
 }

@@ -28,7 +28,7 @@ This repository serves as a mono repository for the [Advent of Code 2021](https:
 | [17](https://adventofcode.com/2021/day/17) | ❌ |  |  | [advent-of-code-2021/17](https://github.com/n0rrman/advent-of-code-2021/tree/main/17) | -->
 | [18](https://adventofcode.com/2021/day/18) | ❌ |  |  | [advent-of-code-2021/18](https://github.com/n0rrman/advent-of-code-2021/tree/main/18) | -->
 | [19](https://adventofcode.com/2021/day/19) | ❌ |  |  | [advent-of-code-2021/19](https://github.com/n0rrman/advent-of-code-2021/tree/main/19) | -->
-| [20](https://adventofcode.com/2021/day/20) | ❌ |  |  | [advent-of-code-2021/20](https://github.com/n0rrman/advent-of-code-2021/tree/main/20) | -->
+| [20](https://adventofcode.com/2021/day/20) | ✅ | 5391 | 16383 | [advent-of-code-2021/20](https://github.com/n0rrman/advent-of-code-2021/tree/main/20) | -->
 | [21](https://adventofcode.com/2021/day/21) | ❌ |  |  | [advent-of-code-2021/21](https://github.com/n0rrman/advent-of-code-2021/tree/main/21) | -->
 | [22](https://adventofcode.com/2021/day/22) | ❌ |  |  | [advent-of-code-2021/22](https://github.com/n0rrman/advent-of-code-2021/tree/main/22) | -->
 | [23](https://adventofcode.com/2021/day/23) | ❌ |  |  | [advent-of-code-2021/23](https://github.com/n0rrman/advent-of-code-2021/tree/main/23) | -->
