@@ -25,10 +25,10 @@ func main() {
 	fmt.Println(p1, p2)
 
 	// Part One
-	results := "part one"
+	results := playAndCount(p1, p2)
 	fmt.Println("Part one: ", results)
 
 	// Part Two
-	results = "part two"
+	results = 2
 	fmt.Println("Part two: ", results)
 }

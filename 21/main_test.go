@@ -4,6 +4,16 @@ import (
 	"testing"
 )
 
+func TestDice(t *testing.T) {
+	var d dice = 5
+	d.rollDice()
+	d.rollDice()
+
+	if d.readDice() != 7 {
+		t.Errorf("Error rolling dice")
+	}
+}
+
 func TestDataLoading(t *testing.T) {
 	p1, p2 := readData("test_data")
 
@@ -19,9 +29,10 @@ func TestDataLoading(t *testing.T) {
 }
 
 func TestA(t *testing.T) {
-	results := 0
+	p1, p2 := readData("test_data")
+	results := playAndCount(p1, p2)
 
-	const e = 1
+	const e = 739785
 	if results != e {
 		t.Errorf("Expected %v, but got %v", e, results)
 	}
