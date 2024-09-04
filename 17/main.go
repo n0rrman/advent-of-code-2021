@@ -4,22 +4,30 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strconv"
 	"strings"
 )
 
-func readData(file string) []string {
+func readData(file string) ([]int, []int) {
 	body, err := os.ReadFile(file)
 	if err != nil {
 		log.Fatalf("unable to read file: %v", err)
 	}
-	sData := strings.Split(string(body[:]), "\n")
+	sData := strings.Split(string(body[:]), " ")
+	xString := strings.Split(strings.Split(sData[2], "=")[1], "..")
+	yString := strings.Split(strings.Split(sData[3], "=")[1], "..")
 
-	return sData
+	x, y := make([]int, 2), make([]int, 2)
+	x[0], _ = strconv.Atoi(xString[0])
+	x[1], _ = strconv.Atoi(xString[1])
+	y[0], _ = strconv.Atoi(yString[0])
+	y[1], _ = strconv.Atoi(yString[1])
+
+	return x, y
 }
 
 func main() {
-	data := readData("data")
-	_ = data
+	_, _ = readData("data")
 
 	// Part One
 	results := "part one"
