@@ -12,14 +12,14 @@ func readData(file string) []string {
 	if err != nil {
 		log.Fatalf("unable to read file: %v", err)
 	}
-	sData := strings.Split(string(body[:]), "\n")
+	sData := strings.Split(string(body[:]), "")
 
 	return sData
 }
 
 func main() {
 	data := readData("data")
-	_ = data
+	fmt.Println(data)
 
 	// Part One
 	results := "part one"
