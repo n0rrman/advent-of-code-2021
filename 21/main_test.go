@@ -39,9 +39,10 @@ func TestA(t *testing.T) {
 }
 
 func TestB(t *testing.T) {
-	results := 0
+	p1, p2 := readData("test_data")
+	results := playProperlyAndCount(p1, p2)
 
-	const e = 2
+	const e = 444356092776315
 	if results != e {
 		t.Errorf("Expected %v, but got %v", e, results)
 	}
