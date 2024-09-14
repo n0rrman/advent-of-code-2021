@@ -16,9 +16,10 @@ func readData(file string) [][][]int {
 	sData := strings.Split(string(body[:]), "\n\n")
 	scanners := make([][][]int, len(sData))
 
-	for k, scannerData := range sData {
-		scanners[k] = make([][]int, len(sData[0]))
-		for i, row := range strings.Split(scannerData, "\n") {
+	for k, scannerDataString := range sData {
+		scannerData := strings.Split(scannerDataString, "\n")
+		scanners[k] = make([][]int, len(scannerData)-1)
+		for i, row := range scannerData {
 			if i == 0 {
 				continue
 			}
