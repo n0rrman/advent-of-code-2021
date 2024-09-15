@@ -36,16 +36,11 @@ func readData(file string) [][][]int {
 func main() {
 	data := readData("test_data")
 
-	for _, scanner := range data {
-		fmt.Println(scanner)
-
-	}
-
 	// Part One
-	results := "part one"
+	results := syncAndCountScanners(data)
 	fmt.Println("Part one: ", results)
 
 	// Part Two
-	results = "part two"
+	results = 0
 	fmt.Println("Part two: ", results)
 }
