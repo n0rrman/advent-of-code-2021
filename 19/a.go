@@ -34,6 +34,18 @@ func calc3dDistance(a []int, b []int) float64 {
 	return math.Sqrt(tmp)
 }
 
+func numOverlap(a scanner, b scanner) int {
+	count := 0
+	for _, ad := range a.distances {
+		for _, bd := range b.distances {
+			if math.Abs(ad-bd) < 0.00001 {
+				count++
+			}
+		}
+	}
+	return count
+}
+
 func syncAndCountScanners(scanners [][][]int) int {
 	allScanners := make([]scanner, len(scanners))
 
@@ -41,8 +53,9 @@ func syncAndCountScanners(scanners [][][]int) int {
 		newScanner := scanner{}
 		newScanner.init(s)
 		allScanners[i] = newScanner
+		if i > 1 {
+			fmt.Println(numOverlap(allScanners[i-1], allScanners[i]))
+		}
 	}
-	fmt.Println(allScanners[0].beacons)
-	fmt.Println(allScanners[0].distances)
 	return 0
 }
