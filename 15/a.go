@@ -1,9 +1,6 @@
 package main
 
-import (
-	"math"
-)
-
+/*
 func findSafestPath(x, y int, data [][]int, visited [][]bool) int {
 
 	if y == len(data)-1 && x == len(data[y])-1 {
@@ -36,12 +33,18 @@ func findSafestPath(x, y int, data [][]int, visited [][]bool) int {
 	}
 	return data[y][x] + minVal
 }
+*/
 
 func calcLowestRisk(data [][]int) int {
-	visited := make([][]bool, len(data))
-	for i := range data {
-		visited[i] = make([]bool, len(data[i]))
-	}
+	// Add starting node visited
+	// Add all neighbours to queue
+	// Energy spent = 0
 
-	return findSafestPath(0, 0, data, visited)
+	// if queue value = 0
+	//		add to visited, add neighbours to queue
+
+	// increment energy spent
+	// decrement all values in queue
+
+	return 0
 }
