@@ -1,50 +1,97 @@
 package main
 
-/*
-func findSafestPath(x, y int, data [][]int, visited [][]bool) int {
+import "fmt"
 
-	if y == len(data)-1 && x == len(data[y])-1 {
-		return data[y][x]
-	}
-
-	n := y > 0
-	e := x < len(data[0])-1
-	s := y < len(data)-1
-	w := x > 0
-	visited[y][x] = true
-	pseudoMaxVal := 99999999999
-	minVal := pseudoMaxVal
-
-	if n && !visited[y-1][x] {
-		val := findSafestPath(x, y-1, data, visited)
-		minVal = int(math.Min(float64(minVal), float64(val)))
-	}
-	if e && !visited[y][x+1] {
-		val := findSafestPath(x+1, y, data, visited)
-		minVal = int(math.Min(float64(minVal), float64(val)))
-	}
-	if s && !visited[y+1][x] {
-		val := findSafestPath(x, y+1, data, visited)
-		minVal = int(math.Min(float64(minVal), float64(val)))
-	}
-	if w && !visited[y][x-1] {
-		val := findSafestPath(x-1, y, data, visited)
-		minVal = int(math.Min(float64(minVal), float64(val)))
-	}
-	return data[y][x] + minVal
+type coords struct {
+	x int
+	y int
 }
-*/
+
+type workList map[coords]int
+
+func makeVisitedTable(data [][]int) [][]bool {
+	visited := make([][]bool, len(data))
+	for y, row := range data {
+		visited[y] = make([]bool, len(row))
+		for x := range data {
+			visited[y][x] = false
+		}
+	}
+	return visited
+}
+
+func addVisited(visited [][]bool, c coords) [][]bool {
+	visited[c.y][c.x] = true
+	return visited
+}
+
+func isValid(visited [][]bool, c coords) bool {
+	if (c.y < 0) || (c.y >= len(visited)) {
+		return false
+	}
+	if (c.x < 0) || (c.x > len(visited[0])) {
+		return false
+	}
+	return !visited[c.y][c.x]
+}
+
+func addNeighboursToList(wl workList, c coords, energy int, data [][]int, visited [][]bool) workList {
+	e := coords{x: c.x + 1, y: c.y}
+	w := coords{x: c.x - 1, y: c.y}
+	n := coords{x: c.x, y: c.y + 1}
+	s := coords{x: c.x, y: c.y - 1}
+
+	if isValid(visited, n) {
+		wl[n] = energy + data[n.y][n.x]
+	}
+	if isValid(visited, s) {
+		wl[s] = energy + data[s.y][s.x]
+	}
+	if isValid(visited, e) {
+		wl[e] = energy + data[e.y][e.x]
+	}
+	if isValid(visited, w) {
+		wl[w] = energy + data[w.y][w.x]
+	}
+
+	fmt.Println(wl)
+
+	return wl
+}
+
+func isEmpty(wl workList) bool {
+	return len(wl) <= 0
+}
+
+func eq(a, b coords) bool {
+	return a.x == b.x && a.y == b.y
+}
 
 func calcLowestRisk(data [][]int) int {
-	// Add starting node visited
-	// Add all neighbours to queue
-	// Energy spent = 0
+	wl := make(workList)
+	energySpent := 0
+	visited := makeVisitedTable(data)
+	end := coords{x: len(data[0]), y: len(data)}
 
-	// if queue value = 0
-	//		add to visited, add neighbours to queue
+	visited = addVisited(visited, coords{0, 0})
+	wl = addNeighboursToList(wl, coords{0, 0}, energySpent, data, visited)
 
-	// increment energy spent
-	// decrement all values in queue
+	fmt.Println(isEmpty(wl), wl)
 
+	for !isEmpty(wl) {
+		for k, v := range wl {
+			if v == energySpent {
+				delete(wl, k)
+				visited = addVisited(visited, k)
+				wl = addNeighboursToList(wl, k, energySpent, data, visited)
+			}
+			if eq(k, end) {
+				return energySpent
+			}
+		}
+		energySpent++
+	}
+
+	fmt.Println("Ooops, something went wrong...")
 	return 0
 }
