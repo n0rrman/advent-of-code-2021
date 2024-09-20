@@ -25,14 +25,15 @@ func addVisited(visited [][]bool, c coords) [][]bool {
 	return visited
 }
 
-func isValid(visited [][]bool, c coords) bool {
+func isValid(visited [][]bool, wl workList, c coords) bool {
 	if (c.y < 0) || (c.y >= len(visited)) {
 		return false
 	}
-	if (c.x < 0) || (c.x > len(visited[0])) {
+	if (c.x < 0) || (c.x >= len(visited[0])) {
 		return false
 	}
-	return !visited[c.y][c.x]
+	_, alreadyInList := wl[c]
+	return !visited[c.y][c.x] && !alreadyInList
 }
 
 func addNeighboursToList(wl workList, c coords, energy int, data [][]int, visited [][]bool) workList {
@@ -41,20 +42,18 @@ func addNeighboursToList(wl workList, c coords, energy int, data [][]int, visite
 	n := coords{x: c.x, y: c.y + 1}
 	s := coords{x: c.x, y: c.y - 1}
 
-	if isValid(visited, n) {
+	if isValid(visited, wl, n) {
 		wl[n] = energy + data[n.y][n.x]
 	}
-	if isValid(visited, s) {
+	if isValid(visited, wl, s) {
 		wl[s] = energy + data[s.y][s.x]
 	}
-	if isValid(visited, e) {
+	if isValid(visited, wl, e) {
 		wl[e] = energy + data[e.y][e.x]
 	}
-	if isValid(visited, w) {
+	if isValid(visited, wl, w) {
 		wl[w] = energy + data[w.y][w.x]
 	}
-
-	fmt.Println(wl)
 
 	return wl
 }
@@ -69,14 +68,12 @@ func eq(a, b coords) bool {
 
 func calcLowestRisk(data [][]int) int {
 	wl := make(workList)
-	energySpent := 0
 	visited := makeVisitedTable(data)
-	end := coords{x: len(data[0]), y: len(data)}
+	end := coords{x: len(data[0]) - 1, y: len(data) - 1}
+	energySpent := 0
 
 	visited = addVisited(visited, coords{0, 0})
 	wl = addNeighboursToList(wl, coords{0, 0}, energySpent, data, visited)
-
-	fmt.Println(isEmpty(wl), wl)
 
 	for !isEmpty(wl) {
 		for k, v := range wl {
@@ -86,7 +83,7 @@ func calcLowestRisk(data [][]int) int {
 				wl = addNeighboursToList(wl, k, energySpent, data, visited)
 			}
 			if eq(k, end) {
-				return energySpent
+				return v
 			}
 		}
 		energySpent++
