@@ -47,9 +47,10 @@ func TestA(t *testing.T) {
 }
 
 func TestB(t *testing.T) {
-	results := 0
+	data := readData("data")
+	results := calcLowestRiskExtended(data)
 
-	const e = 2
+	const e = 315
 	if results != e {
 		t.Errorf("Expected %v, but got %v", e, results)
 	}
