@@ -31,6 +31,6 @@ func main() {
 	fmt.Println("Part one: ", results)
 
 	// Part Two
-	results = 1
+	results = calcLowestRiskExtended(data)
 	fmt.Println("Part two: ", results)
 }
