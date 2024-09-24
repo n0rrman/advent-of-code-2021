@@ -44,15 +44,14 @@ func hexToBin(data []string) []uint8 {
 }
 
 func main() {
-	data := readData("data")
+	data := readData("test_data")
 	bits := hexToBin(data)
-	fmt.Println(bits)
 
 	// Part One
-	results := "part one"
+	results := calcVersionSum(bits)
 	fmt.Println("Part one: ", results)
 
 	// Part Two
-	results = "part two"
+	results = 0
 	fmt.Println("Part two: ", results)
 }
