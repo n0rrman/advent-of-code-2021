@@ -19,19 +19,29 @@ func bitsToNum(bits []uint8) int {
 	return val
 }
 
+func evalLiteral(bits []uint8) (int, int, bool) {
+	return 1, 3, false
+}
+
 func bitsToPackets(bits []uint8) packet {
 	newPacket := packet{}
 
-	startIndex := 0
+	index := 0
 	moreBits := true
 	for moreBits {
-		newPacket.version = bitsToNum(bits[startIndex : startIndex+3])
-		newPacket.typeId = bitsToNum(bits[startIndex+3 : startIndex+6])
-		//for _, bit := range bits {
+		newPacket.version = bitsToNum(bits[index : index+3])
+		newPacket.typeId = bitsToNum(bits[index+3 : index+6])
 
-		fmt.Println(bits[startIndex : startIndex+3])
-		fmt.Println(bits[startIndex+3 : startIndex+6])
-		fmt.Println(bits[startIndex : startIndex+6])
+		fmt.Println()
+		//fmt.Println(float64())
+
+		if newPacket.typeId == 4 {
+			var numGroups int
+			_, numGroups, moreBits = evalLiteral(bits[index+6:])
+			index = int(float64(index+(numGroups*5)+6) / float64(5))
+
+			fmt.Println(index)
+		}
 		//packetIndex++
 		moreBits = false
 	}
