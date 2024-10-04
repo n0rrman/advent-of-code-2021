@@ -19,6 +19,7 @@ func readData(file string) []string {
 
 func main() {
 	data := readData("data")
+	fmt.Println(data)
 	_ = data
 
 	// Part One
