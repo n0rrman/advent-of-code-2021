@@ -35,7 +35,6 @@ func readData(file string) []instruction {
 			c1, _ := strconv.Atoi(coords[0])
 			c2, _ := strconv.Atoi(coords[1])
 			instructions[i].Coords[c] = Range{c1, c2}
-		
 		}
 	}
 
