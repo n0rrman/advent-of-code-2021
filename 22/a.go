@@ -19,6 +19,12 @@ func countCubes(reactor [][][]bool) int {
 }
 
 func normalise(i []instruction) []instruction {
+	min := []int{i[0].Coords[0][0], i[0].Coords[1][0], i[0].Coords[2][0]}
+	max := []int{i[0].Coords[0][0], i[0].Coords[1][0], i[0].Coords[2][0]}
+
+	_ = max
+	_ = min
+
 	for index, instr := range i {
 		for c, coord := range instr.Coords {
 			if coord[0] > coord[1] {
