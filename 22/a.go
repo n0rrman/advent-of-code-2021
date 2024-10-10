@@ -1,6 +1,8 @@
 package main
 
-func bootUp(i []instruction) [][][]bool {
+import "fmt"
+
+func bootUp(i []instruction, size []int) [][][]bool {
 	return nil
 }
 
@@ -18,26 +20,47 @@ func countCubes(reactor [][][]bool) int {
 	return count
 }
 
-func normalise(i []instruction) []instruction {
+func normalise(i []instruction) ([]instruction, []int) {
 	min := []int{i[0].Coords[0][0], i[0].Coords[1][0], i[0].Coords[2][0]}
 	max := []int{i[0].Coords[0][0], i[0].Coords[1][0], i[0].Coords[2][0]}
 
-	_ = max
-	_ = min
-
 	for index, instr := range i {
 		for c, coord := range instr.Coords {
+			// x1 > x1 swap
 			if coord[0] > coord[1] {
 				i[index].Coords[c] = [2]int{coord[1], coord[0]}
 			}
+
+			// normalisation
+			if i[index].Coords[c][0] < min[c] {
+				min[c] = i[index].Coords[c][0]
+			}
+			if i[index].Coords[c][1] > max[c] {
+				max[c] = i[index].Coords[c][0]
+			}
 		}
 	}
-	return i
+
+	// move min to 0
+	for i := range max {
+		max[i] = max[i] - min[i]
+	}
+
+	// shift values to min = 0
+	for index, instr := range i {
+		for c, coord := range instr.Coords {
+			i[index].Coords[c][0] = coord[0] - min[c]
+			i[index].Coords[c][1] = coord[1] - min[c]
+		}
+	}
+
+	return i, max
 }
 
 func rebootAndCount(i []instruction) int {
-	instructions := normalise(i)
-	reactor := bootUp(instructions)
+	instructions, size := normalise(i)
+	fmt.Println(instructions)
+	reactor := bootUp(instructions, size)
 	numOfCubes := countCubes(reactor)
 	return numOfCubes
 }
