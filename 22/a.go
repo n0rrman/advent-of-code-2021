@@ -3,7 +3,24 @@ package main
 import "fmt"
 
 func bootUp(i []instruction, size []int) [][][]bool {
-	return nil
+	// Empty reactor
+	reactor := make([][][]bool, size[0])
+	for z := range reactor {
+		reactor[z] = make([][]bool, size[1])
+		for y := range reactor[z] {
+			reactor[z][y] = make([]bool, size[2])
+			for x := range reactor[z][y] {
+				reactor[z][y][x] = false
+			}
+		}
+	}
+
+	// Fill reactor
+	for _, instruction := range i {
+		fmt.Println(instruction)
+	}
+
+	return reactor
 }
 
 func countCubes(reactor [][][]bool) int {
@@ -59,7 +76,7 @@ func normalise(i []instruction) ([]instruction, []int) {
 
 func rebootAndCount(i []instruction) int {
 	instructions, size := normalise(i)
-	fmt.Println(instructions)
+	fmt.Println("a", instructions, size)
 	reactor := bootUp(instructions, size)
 	numOfCubes := countCubes(reactor)
 	return numOfCubes

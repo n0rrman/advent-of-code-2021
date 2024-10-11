@@ -4,16 +4,15 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"strings"
 	"strconv"
+	"strings"
 )
 
-type Range [2]int 
+type Range [2]int
 type instruction struct {
-	Mode bool
+	Mode   bool
 	Coords [3]Range
 }
-
 
 func readData(file string) []instruction {
 	body, err := os.ReadFile(file)
@@ -25,8 +24,8 @@ func readData(file string) []instruction {
 	instructions := make([]instruction, len(sData))
 	for i, row := range sData {
 		modeSplit := strings.Split(row, " ")
-		
-		instructions[i] = instruction{}	
+
+		instructions[i] = instruction{}
 		instructions[i].Mode = modeSplit[0] == "on"
 
 		for c, coord := range strings.Split(modeSplit[1], ",") {
@@ -42,15 +41,13 @@ func readData(file string) []instruction {
 }
 
 func main() {
-	data := readData("test_data2")
-	fmt.Println(data)
-	_ = data
+	data := readData("test_data1")
 
 	// Part One
-	results := "part one"
+	results := rebootAndCount(data)
 	fmt.Println("Part one: ", results)
 
 	// Part Two
-	results = "part two"
+	results = 1
 	fmt.Println("Part two: ", results)
 }
