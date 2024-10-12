@@ -17,7 +17,23 @@ func bootUp(i []instruction, size []int) [][][]bool {
 
 	// Fill reactor
 	for _, instruction := range i {
-		fmt.Println(instruction)
+
+		coords := instruction.Coords
+		fmt.Println("1")
+		fmt.Println("coords", coords)
+		fmt.Println("size", size)
+		for z := coords[0][0]; z < coords[0][1]; z++ {
+
+			fmt.Println("2")
+			for y := coords[1][0]; y < coords[1][1]; y++ {
+				fmt.Println("3")
+				for x := coords[2][0]; x < coords[2][1]; x++ {
+					fmt.Println("4")
+					fmt.Println(len(reactor[z][y]), x)
+					reactor[z][y][x] = instruction.Mode
+				}
+			}
+		}
 	}
 
 	return reactor
@@ -71,12 +87,13 @@ func normalise(i []instruction) ([]instruction, []int) {
 		}
 	}
 
+	fmt.Println("refactor", i, max)
+
 	return i, max
 }
 
 func rebootAndCount(i []instruction) int {
 	instructions, size := normalise(i)
-	fmt.Println("a", instructions, size)
 	reactor := bootUp(instructions, size)
 	numOfCubes := countCubes(reactor)
 	return numOfCubes
