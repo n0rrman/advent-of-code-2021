@@ -41,7 +41,7 @@ func readData(file string) []instruction {
 }
 
 func main() {
-	data := readData("test_data1")
+	data := readData("data")
 
 	// Part One
 	results := rebootAndCount(data)

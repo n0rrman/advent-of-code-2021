@@ -1,14 +1,12 @@
 package main
 
-import "fmt"
-
 func bootUp(i []instruction, size []int) [][][]bool {
 	// Empty reactor
-	reactor := make([][][]bool, size[0])
+	reactor := make([][][]bool, size[0]+1)
 	for z := range reactor {
-		reactor[z] = make([][]bool, size[1])
+		reactor[z] = make([][]bool, size[1]+1)
 		for y := range reactor[z] {
-			reactor[z][y] = make([]bool, size[2])
+			reactor[z][y] = make([]bool, size[2]+1)
 			for x := range reactor[z][y] {
 				reactor[z][y][x] = false
 			}
@@ -17,19 +15,10 @@ func bootUp(i []instruction, size []int) [][][]bool {
 
 	// Fill reactor
 	for _, instruction := range i {
-
 		coords := instruction.Coords
-		fmt.Println("1")
-		fmt.Println("coords", coords)
-		fmt.Println("size", size)
-		for z := coords[0][0]; z < coords[0][1]; z++ {
-
-			fmt.Println("2")
-			for y := coords[1][0]; y < coords[1][1]; y++ {
-				fmt.Println("3")
-				for x := coords[2][0]; x < coords[2][1]; x++ {
-					fmt.Println("4")
-					fmt.Println(len(reactor[z][y]), x)
+		for z := coords[0][0]; z <= coords[0][1]; z++ {
+			for y := coords[1][0]; y <= coords[1][1]; y++ {
+				for x := coords[2][0]; x <= coords[2][1]; x++ {
 					reactor[z][y][x] = instruction.Mode
 				}
 			}
@@ -69,7 +58,7 @@ func normalise(i []instruction) ([]instruction, []int) {
 				min[c] = i[index].Coords[c][0]
 			}
 			if i[index].Coords[c][1] > max[c] {
-				max[c] = i[index].Coords[c][0]
+				max[c] = i[index].Coords[c][1]
 			}
 		}
 	}
@@ -86,8 +75,6 @@ func normalise(i []instruction) ([]instruction, []int) {
 			i[index].Coords[c][1] = coord[1] - min[c]
 		}
 	}
-
-	fmt.Println("refactor", i, max)
 
 	return i, max
 }

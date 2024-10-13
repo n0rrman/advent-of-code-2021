@@ -15,6 +15,7 @@ func TestA1(t *testing.T) {
 }
 
 func TestA2(t *testing.T) {
+
 	data := readData("test_data2")
 	results := rebootAndCount(data)
 
