@@ -1,18 +1,23 @@
 package main
 
+import "fmt"
+
 func bootUp(i []instruction, size []int) [][][]bool {
+	fmt.Println("Empty")
 	// Empty reactor
 	reactor := make([][][]bool, size[0]+1)
 	for z := range reactor {
 		reactor[z] = make([][]bool, size[1]+1)
 		for y := range reactor[z] {
+			fmt.Println(y, size[2])
 			reactor[z][y] = make([]bool, size[2]+1)
-			for x := range reactor[z][y] {
-				reactor[z][y][x] = false
-			}
+			//for x := range reactor[z][y] {
+			//	reactor[z][y][x] = false
+			//}
 		}
 	}
 
+	fmt.Println("Fill")
 	// Fill reactor
 	for _, instruction := range i {
 		coords := instruction.Coords
@@ -80,8 +85,15 @@ func normalise(i []instruction) ([]instruction, []int) {
 }
 
 func rebootAndCount(i []instruction) int {
+	fmt.Printf("Noramlise\n")
 	instructions, size := normalise(i)
+	// normalise
+	// calc overlap
+	// calc volume
+	fmt.Printf("Bootup\n")
 	reactor := bootUp(instructions, size)
+	fmt.Printf("Count\n")
 	numOfCubes := countCubes(reactor)
+	fmt.Printf("Done\n")
 	return numOfCubes
 }
