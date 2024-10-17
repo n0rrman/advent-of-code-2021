@@ -17,16 +17,27 @@ func readData(file string) []string {
 	return sData
 }
 
+type instruction struct {
+}
+
+func parseInstructions([]string) []instruction {
+	// inp a
+	// add a b
+	// mul a b
+	// div a b
+	// mod a b
+	// eql a b
+	return []instruction{}
+}
+
 func main() {
 	data := readData("test_data")
-	fmt.Println(data)
-	_ = data
 
 	// Part One
-	results := "part one"
+	results := findLargestNOMAD(data)
 	fmt.Println("Part one: ", results)
 
 	// Part Two
-	results = "part two"
+	results = 1
 	fmt.Println("Part two: ", results)
 }
