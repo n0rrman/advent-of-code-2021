@@ -18,23 +18,32 @@ func readData(file string) []string {
 }
 
 type instruction struct {
+	instr int
+	vars  []int
 }
 
-func parseInstructions([]string) []instruction {
+func parseInstructions(ss []string) []instruction {
+	var i []instruction
+	for _, s := range ss {
+		split := strings.Split(s, " ")
+		fmt.Println(split[0])
+		i = append(i, instruction{})
+	}
 	// inp a
 	// add a b
 	// mul a b
 	// div a b
 	// mod a b
 	// eql a b
-	return []instruction{}
+	return i
 }
 
 func main() {
 	data := readData("test_data")
 
 	// Part One
-	results := findLargestNOMAD(data)
+	i := parseInstructions(data)
+	results := findLargestNOMAD(i)
 	fmt.Println("Part one: ", results)
 
 	// Part Two

@@ -4,7 +4,7 @@ type program []instruction
 
 var w, x, y, z int
 
-func findLargestNOMAD([]string) int {
+func findLargestNOMAD(i []instruction) int {
 	return 0
 }
 
