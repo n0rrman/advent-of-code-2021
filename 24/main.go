@@ -17,8 +17,19 @@ func readData(file string) []string {
 	return sData
 }
 
+type instructionType int
+
+const (
+	Inp instructionType = iota + 1
+	Add
+	Mul
+	Div
+	Mod
+	Eql
+)
+
 type instruction struct {
-	instr int
+	instr instructionType
 	vars  []int
 }
 
@@ -26,7 +37,21 @@ func parseInstructions(ss []string) []instruction {
 	var i []instruction
 	for _, s := range ss {
 		split := strings.Split(s, " ")
-		fmt.Println(split[0])
+		switch split[0] {
+		case "inp":
+			fmt.Println("Inp")
+		case "add":
+			fmt.Println("Add")
+		case "mul":
+			fmt.Println("Mul")
+		case "div":
+			fmt.Println("Div")
+		case "mod":
+			fmt.Println("Mod")
+		case "eql":
+			fmt.Println("Eql")
+		}
+
 		i = append(i, instruction{})
 	}
 	// inp a
