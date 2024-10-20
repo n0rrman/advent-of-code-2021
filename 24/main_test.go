@@ -6,8 +6,9 @@ import (
 
 func TestA(t *testing.T) {
 	data := readData("test_data")
-	i := parseInstructions(data)
-	results := findLargestNOMAD(i)
+	var v variables
+	i := parseInstructions(data, &v)
+	results := findLargestNOMAD(i, &v)
 
 	const e = 1
 	if results != e {

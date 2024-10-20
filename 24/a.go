@@ -1,10 +1,6 @@
 package main
 
-type program []instruction
-
-var w, x, y, z int
-
-func findLargestNOMAD(i []instruction) int {
+func findLargestNOMAD(i []instruction, v *variables) int {
 	return 0
 }
 

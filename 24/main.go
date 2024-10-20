@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strconv"
 	"strings"
 )
 
@@ -17,58 +18,78 @@ func readData(file string) []string {
 	return sData
 }
 
-type instructionType int
-
-const (
-	Inp instructionType = iota + 1
-	Add
-	Mul
-	Div
-	Mod
-	Eql
-)
-
-type instruction struct {
-	instr instructionType
-	vars  []int
-}
-
-func parseInstructions(ss []string) []instruction {
+func parseInstructions(ss []string, v *variables) []instruction {
 	var i []instruction
+
 	for _, s := range ss {
+		// Instruction
 		split := strings.Split(s, " ")
+		var newInstr instruction
 		switch split[0] {
 		case "inp":
-			fmt.Println("Inp")
+			newInstr.instr = Inp
 		case "add":
-			fmt.Println("Add")
+			newInstr.instr = Add
 		case "mul":
-			fmt.Println("Mul")
+			newInstr.instr = Mul
 		case "div":
-			fmt.Println("Div")
+			newInstr.instr = Div
 		case "mod":
-			fmt.Println("Mod")
+			newInstr.instr = Mod
 		case "eql":
-			fmt.Println("Eql")
+			newInstr.instr = Eql
 		}
 
-		i = append(i, instruction{})
+		// First variable
+		val, err := strconv.Atoi(split[1])
+		if err == nil {
+			newInstr.constA = val
+			newInstr.varA = &newInstr.constA
+		} else {
+			switch split[1] {
+			case "w":
+				newInstr.varA = &v.w
+			case "x":
+				newInstr.varA = &v.x
+			case "y":
+				newInstr.varA = &v.y
+			case "z":
+				newInstr.varA = &v.z
+			}
+		}
+
+		// Second variable
+		if len(split) > 2 {
+			val, err := strconv.Atoi(split[2])
+			if err == nil {
+				newInstr.constB = val
+				newInstr.varB = &newInstr.constB
+			} else {
+				switch split[2] {
+				case "w":
+					newInstr.varB = &v.w
+				case "x":
+					newInstr.varB = &v.x
+				case "y":
+					newInstr.varB = &v.y
+				case "z":
+					newInstr.varB = &v.z
+				}
+			}
+		}
+
+		i = append(i, newInstr)
 	}
-	// inp a
-	// add a b
-	// mul a b
-	// div a b
-	// mod a b
-	// eql a b
 	return i
 }
 
 func main() {
 	data := readData("test_data")
+	var v variables
+	i := parseInstructions(data, &v)
 
 	// Part One
-	i := parseInstructions(data)
-	results := findLargestNOMAD(i)
+	results := findLargestNOMAD(i, &v)
 	fmt.Println("Part one: ", results)
 
 	// Part Two
