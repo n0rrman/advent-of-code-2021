@@ -89,7 +89,7 @@ func main() {
 	i := parseInstructions(data, &v)
 
 	// Part One
-	results := findLargestNOMAD(i, &v)
+	results := findLargestNOMAD(&i, &v)
 	fmt.Println("Part one: ", results)
 
 	// Part Two
