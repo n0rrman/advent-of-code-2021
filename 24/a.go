@@ -1,8 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
-func executeProgram(instrs *[]instruction, n []int) {
+func executeProgram(instrs *[]instruction, n []int) error {
 	counter := 0
 	for i, instr := range *instrs {
 		switch instr.instr {
@@ -18,7 +20,6 @@ func executeProgram(instrs *[]instruction, n []int) {
 		case Mod:
 			*(*instrs)[i].varA = *instr.varA % *instr.varB
 		case Eql:
-			*(*instrs)[i].varA = *instr.varA / *instr.varB
 			if *instr.varA == *instr.varB {
 				*(*instrs)[i].varA = 1
 			} else {
@@ -26,6 +27,7 @@ func executeProgram(instrs *[]instruction, n []int) {
 			}
 		}
 	}
+	return nil
 }
 
 func clearCache(v *variables) {
@@ -37,12 +39,11 @@ func clearCache(v *variables) {
 
 func findLargestNOMAD(i *[]instruction, v *variables) int {
 
-	for idx := 1; idx < 15; idx++ {
-		clearCache(v)
-		numbers := []int{idx}
-		executeProgram(i, numbers)
-		fmt.Println(*v)
-	}
+	clearCache(v)
+	numbers := []int{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2}
+	executeProgram(i, numbers)
+
+	fmt.Println(v)
 
 	return 0
 }

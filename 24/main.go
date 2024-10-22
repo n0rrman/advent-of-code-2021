@@ -84,7 +84,7 @@ func parseInstructions(ss []string, v *variables) []instruction {
 }
 
 func main() {
-	data := readData("test_data")
+	data := readData("data")
 	var v variables
 	i := parseInstructions(data, &v)
 
